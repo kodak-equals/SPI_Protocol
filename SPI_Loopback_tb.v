@@ -79,11 +79,17 @@ initial begin
 end
 
 //Debug information
-reg	data_valid_1;
+reg data_valid_1; 
 reg data_valid_2;
+
 always @(posedge clk or negedge rst_n) begin
-	data_valid_1 <= data_valid_slave;
-	data_valid_2 <= data_valid_1;
+  if (!rst_n) begin
+    data_valid_1 <= 1'b0;
+    data_valid_2 <= 1'b0;
+  end else begin
+    data_valid_1 <= data_valid_slave;
+    data_valid_2 <= data_valid_1;
+  end
 end
 
 assign data_valid_pos = ~data_valid_2 & data_valid_1;
