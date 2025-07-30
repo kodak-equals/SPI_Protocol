@@ -94,12 +94,16 @@ end
 
 assign data_valid_pos = ~data_valid_2 & data_valid_1;
 
-always @(posedge clk) begin
-	if (data_valid_pos)
-		if (data_slave_out == data_master_in)
-			$display("PASS! data_slave_out = %h, data_master_in = %h", data_slave_out, data_master_in);
-		else
-			$display("FAIL! data_slave_out = %h, data_master_in = %h", data_slave_out, data_master_in);
+always @(posedge clk) begin 
+  if (data_valid_pos) begin
+    if (data_slave_out == data_master_in) begin
+      $display("PASS! data_slave_out = %h, data_master_in = %h", 
+               data_slave_out, data_master_in); 
+    end else begin
+      $display("FAIL! data_slave_out = %h, data_master_in = %h", 
+               data_slave_out, data_master_in); 
+    end
+  end
 end
 
 always @(posedge clk) begin
