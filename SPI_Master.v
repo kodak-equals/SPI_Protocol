@@ -130,7 +130,7 @@ generate
  		1: assign shift_en = sclk_posedge;
  		
  		//Since the default mode is 0
-		default: assign shift_en = sclk_posedge;
+		default: assign shift_en = sclk_negedge;
 	endcase
 endgenerate
 
